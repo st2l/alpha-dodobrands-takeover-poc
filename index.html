@@ -1,16 +1,12 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Subdomain Takeover PoC</title></head>
+<html lang="en"><head><meta charset="utf-8"><title>Subdomain Takeover PoC - wkp</title></head>
 <body style="font-family:system-ui;max-width:680px;margin:50px auto">
-<h1>Subdomain takeover PoC — arbitrary JS execution</h1>
-<p>Benign security PoC on a controlled, dangling Dodo Brands subdomain. Reported via bug bounty. Researcher: <b>wkp</b> (X-Bug-Bounty: wkp).</p>
-<pre id="out">running…</pre>
+<h1>Subdomain takeover PoC</h1>
+<p>Benign security PoC on a dangling Dodo Brands subdomain. Reported via bug bounty. Researcher: <b>wkp</b>.</p>
+<pre id="out"></pre>
 <script>
-// Benign proof that attacker-controlled JS runs in the alpha.dodobrands.io origin.
-var o = document.getElementById('out');
-o.textContent =
-  "JS EXECUTES as origin: " + location.origin + "\n" +
-  "document.domain: " + document.domain + "\n" +
-  "cookies visible to this origin: " + JSON.stringify(document.cookie) + "\n" +
-  "(An attacker could host a fake Dodo login here under a valid *.dodobrands.io cert.)";
+document.getElementById('out').textContent =
+  "origin: " + location.origin + " | document.domain: " + document.domain;
+alert("Subdomain Takeover PoC by wkp\ndocument.domain = " + document.domain);
 </script>
 </body></html>
